@@ -1,31 +1,31 @@
-package com.app.compose_navigation_mvvm_flow.viewmodels
+package viewmodel
 
 
-import data.Receipes
 import data.Repository
 import com.app.compose_navigation_mvvm_flow.utils.UiState
+import data.ProductResponse
+import data.Products
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import viewmodel.BaseViewModel
 
 class MainViewModel(private val repository: Repository): BaseViewModel() {
 
-    val _uiStateReceipeList = MutableStateFlow<UiState<Receipes?>>(UiState.Loading)
-    val uiStateReceipeList: StateFlow<UiState<Receipes?>> = _uiStateReceipeList
+    val _uiStateProductList = MutableStateFlow<UiState<ProductResponse?>>(UiState.Loading)
+    val uiStateProductList: StateFlow<UiState<ProductResponse?>> = _uiStateProductList
 
-    val _uiStateReceipeDetail = MutableStateFlow<UiState<Receipes.Recipe?>>(UiState.Loading)
-    val uiStateReceipeDetail: StateFlow<UiState<Receipes.Recipe?>> = _uiStateReceipeDetail
+    val _uiStateProductDetail = MutableStateFlow<UiState<Products?>>(UiState.Loading)
+    val uiStateProductDetail: StateFlow<UiState<Products?>> = _uiStateProductDetail
 
 
-    fun getReceipesList() = CoroutineScope(Dispatchers.IO).launch {
-        fetchData(_uiStateReceipeList) { repository.getReceipes() }
+    fun getProductList() = CoroutineScope(Dispatchers.IO).launch {
+        fetchData(_uiStateProductList) { repository.getProducts() }
     }
 
-    fun getReceipeDetail(id: Int?) = CoroutineScope(Dispatchers.IO).launch {
-        fetchData(_uiStateReceipeDetail,) { repository.getReceipesDetail(id) }
+    fun getProductDetail(id: Int?) = CoroutineScope(Dispatchers.IO).launch {
+        fetchData(_uiStateProductDetail,) { repository.getProductDetail(id) }
     }
 }

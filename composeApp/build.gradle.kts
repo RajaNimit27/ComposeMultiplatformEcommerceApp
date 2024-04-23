@@ -56,6 +56,9 @@ kotlin {
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.transition)
             implementation(libs.voyager.koin)
+            implementation(libs.voyager.tab.navigator)
+
+
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

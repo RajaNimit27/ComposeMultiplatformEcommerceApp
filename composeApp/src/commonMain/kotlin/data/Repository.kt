@@ -7,15 +7,15 @@ import kotlinx.coroutines.flow.Flow
 
 class Repository(private val remoteDataSource: RemoteDataSource) {
 
-    suspend fun getReceipes(): Flow<UiState<Receipes?>> {
-        return toResultFlow(){
-            remoteDataSource.getReceipes()
+    suspend fun getProducts(): Flow<UiState<ProductResponse?>> {
+        return toResultFlow {
+            remoteDataSource.getProducts()
         }
     }
 
-    suspend fun getReceipesDetail(id:Int?): Flow<UiState<Receipes.Recipe?>> {
-        return toResultFlow(){
-            remoteDataSource.getReceipesDetail(id)
+    suspend fun getProductDetail(id:Int?): Flow<UiState<Products?>> {
+        return toResultFlow{
+            remoteDataSource.getProductDetail(id)
         }
     }
 

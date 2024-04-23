@@ -1,6 +1,6 @@
 package di
 
-import com.app.compose_navigation_mvvm_flow.viewmodels.MainViewModel
+import viewmodel.MainViewModel
 import org.koin.dsl.module
 
 

@@ -21,6 +21,7 @@ kamel="0.9.1"
 koin="1.1.0"
 mvvmCore = "0.13.1"
 voyagerVersion = "1.0.0"
+pagingCommonVersion = "3.3.0-alpha02-0.4.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -40,6 +41,8 @@ ktor-client-content-negotiation = {module = "io.ktor:ktor-client-content-negotia
 voyager-navigator={module="cafe.adriel.voyager:voyager-navigator", version.ref="voyagerVersion"}
 voyager-transition={module="cafe.adriel.voyager:voyager-transitions",version.ref="voyagerVersion"}
 voyager-koin={module="cafe.adriel.voyager:voyager-koin",version.ref="voyagerVersion"}
+voyager-tab-navigator={module="cafe.adriel.voyager:voyager-tab-navigator", version.ref="voyagerVersion"}
+
 [bundles]
 ktor = ["ktor-client-core", "ktor-client-content-negotiation"]
 
