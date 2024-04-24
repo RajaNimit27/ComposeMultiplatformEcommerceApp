@@ -18,6 +18,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyGridItemScope
+import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
@@ -31,6 +34,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,25 +46,30 @@ import androidx.compose.ui.unit.sp
 import data.Products
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import themes.lightYellow
 
 
 @Composable
 fun ProductCard(list: List<Products>, onProductClick: (Products) -> Unit) {
-       Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-           ImageSliderHomeBanner(bannerImages()) }
+
              LazyVerticalGrid(
                    columns = GridCells.Fixed(2),
                    verticalArrangement = Arrangement.spacedBy(5.dp),
                    horizontalArrangement = Arrangement.spacedBy(5.dp),
-                   modifier = Modifier.fillMaxSize(),
-                   content = {
-                       items(list.size) { index ->
-                           val data = list[index]
-                           ProductItem(data,onProductClick)
-                       }
-                   }
-               )
+                   modifier = Modifier.fillMaxSize())
+             {
+                 header {
+                     ImageSliderHomeBanner(bannerImages())
+                 }
+                 items(list.size) { index ->
+                     val data = list[index]
+                     ProductItem(data,onProductClick)
+                 }
+             }
 
   }
 
@@ -126,7 +135,7 @@ fun ProductItem(products: Products,onProductClick: (Products) -> Unit) {
 fun ImageSliderHomeBanner(list: List<Any>) {
     val pagerState = rememberPagerState(
         initialPage = 0,
-        initialPageOffsetFraction = 0f) { list.size }
+        initialPageOffsetFraction = 0f) { Int.MAX_VALUE }
     HorizontalPager(
         modifier = Modifier,
         state = pagerState,
@@ -150,13 +159,44 @@ fun ImageSliderHomeBanner(list: List<Any>) {
                     .background(Color.Transparent),
             ) {
                 KamelImage(
-                    resource = asyncPainterResource(data = list[it]),
+                    resource = asyncPainterResource(data = list[it%list.size]),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                 )
             }
         }
     )
+
+    LaunchedEffect(key1 = Unit){
+        var initPage= Int.MAX_VALUE/2
+        while (initPage % list.size !=0){
+            initPage++
+        }
+        pagerState.scrollToPage(initPage)
+    }
+
+    LaunchedEffect(key1 = pagerState.currentPage){
+       launch {
+           while (true){
+               delay(3000)
+               withContext(NonCancellable){
+                   if(pagerState.currentPage+1 in 0..Int.MAX_VALUE){
+                       pagerState.animateScrollToPage(pagerState.currentPage+1)
+                   }else{
+                       var initPage= Int.MAX_VALUE/2
+                       pagerState.scrollToPage(initPage)
+
+                   }
+               }
+           }
+       }
+    }
+}
+
+fun LazyGridScope.header(
+    content: @Composable LazyGridItemScope.() -> Unit
+) {
+    item(span = { GridItemSpan(this.maxLineSpan) }, content = content)
 }
 
 fun bannerImages():List<String>{

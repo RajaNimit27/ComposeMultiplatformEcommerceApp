@@ -1,7 +1,13 @@
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Colors
@@ -32,9 +38,17 @@ fun App() {
         modules(appModule())
     }) {
         MaterialTheme {
-            Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-               setTabs()
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(lightYellow)
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+            ) {
+                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                    setTabs()
+                }
             }
+
         }
     }
 
