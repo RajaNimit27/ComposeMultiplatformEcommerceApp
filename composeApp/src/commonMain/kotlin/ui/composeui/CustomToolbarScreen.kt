@@ -16,14 +16,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.Navigator
+import themes.lightYellow
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 @Composable
 fun CustomToolbarScreen(navigator: Navigator,title: String, isBack: Boolean){
     TopAppBar(
         colors = TopAppBarDefaults.smallTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            containerColor = lightYellow,
             titleContentColor = MaterialTheme.colorScheme.primary,
+
         ),
         title = {
             Text(text = title,color = Color.Black,
@@ -40,7 +42,7 @@ fun CustomToolbarScreen(navigator: Navigator,title: String, isBack: Boolean){
             }else{
                 IconButton(onClick = {
                 }) {
-                    Icon(Icons.Filled.Menu, "backIcon")
+                    Icon(Icons.Filled.Menu, "homeIcon")
                 }
             }
         }

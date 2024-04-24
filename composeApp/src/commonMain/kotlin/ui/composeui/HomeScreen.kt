@@ -26,7 +26,9 @@ object HomeScreen: Screen {
     override fun Content() {
         val mainViewModel: MainViewModel = getKoin().get()
         val navigator= LocalNavigator.currentOrThrow
-        Scaffold()
+        Scaffold( topBar = {
+            CustomToolbarScreen(navigator,title = "Home", false)
+        })
         { innerPadding ->
             Column(
                 modifier = Modifier

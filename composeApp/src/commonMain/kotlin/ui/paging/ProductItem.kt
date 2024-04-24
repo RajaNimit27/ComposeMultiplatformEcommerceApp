@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import data.Products
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
+import themes.lightYellow
 
 
 @Composable
@@ -74,7 +75,7 @@ fun ProductItem(products: Products,onProductClick: (Products) -> Unit) {
         shape = MaterialTheme.shapes.medium,
         elevation =  CardDefaults.cardElevation(
             defaultElevation = 5.dp)) {
-        Column(modifier = Modifier.height(350.dp).background(Color.White).padding(10.dp)) {
+        Column(modifier = Modifier.height(350.dp).background(lightYellow).padding(10.dp)) {
             KamelImage(
                 resource = asyncPainterResource(data = products.thumbnail),
                 contentDescription = null,
@@ -98,7 +99,7 @@ fun ProductItem(products: Products,onProductClick: (Products) -> Unit) {
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Normal,
                     maxLines = 4,
-                    color = Color.Gray
+                    color = Color.Black
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(

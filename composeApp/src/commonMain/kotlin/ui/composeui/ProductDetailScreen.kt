@@ -22,6 +22,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -37,6 +38,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -51,6 +53,7 @@ import data.Products
 import viewmodel.MainViewModel
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
+import themes.lightYellow
 
 
 class ProductDetailScreen(val mainViewModel: MainViewModel, val id: Int?):Screen {
@@ -164,13 +167,14 @@ private fun getProductDetail(mainViewModel: MainViewModel, id: Int?) {
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Button(
+                        colors = ButtonDefaults.buttonColors(containerColor = lightYellow, contentColor = lightYellow),
                         onClick = {
                             if (quantity.value > 1) {
                                 quantity.value--
                             }
                         }
                     ) {
-                        Text("-")
+                        Text("-", color = Color.Black)
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
@@ -180,36 +184,34 @@ private fun getProductDetail(mainViewModel: MainViewModel, id: Int?) {
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Button(
+                        colors = ButtonDefaults.buttonColors(containerColor = lightYellow, contentColor = lightYellow),
                         onClick = {
                             quantity.value++
                         }
                     ) {
-                        Text("+")
+                        Text("+",color = Color.Black)
                     }
                 }
-                Row(
-                    modifier = Modifier.fillMaxWidth().padding(10.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
+                Spacer(modifier = Modifier.width(30.dp))
                     Button(
+                        colors = ButtonDefaults.buttonColors(containerColor = lightYellow, contentColor = lightYellow),
+                        modifier = Modifier.fillMaxWidth(),
                         onClick = {
                             // Add to cart logic here
                         },
-                        modifier = Modifier.weight(1f)
                     ) {
-                        Text("Add to Cart")
+                        Text("Add to Cart",fontWeight = FontWeight.Bold , color = Color.Black)
                     }
-                    Spacer(modifier = Modifier.width(16.dp))
+                    Spacer(modifier = Modifier.width(20.dp))
                     Button(
+                        modifier = Modifier.fillMaxWidth(),
                         onClick = {
                             // Buy now logic here
                         },
-                        modifier = Modifier.weight(1f)
+                        colors = ButtonDefaults.buttonColors(containerColor = lightYellow, contentColor = lightYellow),
                     ) {
-                        Text("Buy Now")
+                        Text("Buy Now",fontWeight = FontWeight.Bold,color = Color.Black)
                     }
-                }
 
             }
         }

@@ -4,9 +4,11 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,6 +20,7 @@ import cafe.adriel.voyager.navigator.tab.TabDisposable
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import di.appModule
 import org.koin.compose.KoinApplication
+import themes.lightYellow
 import ui.tabs.CartTab
 import ui.tabs.FavouriteTab
 import ui.tabs.HomeTab
@@ -53,7 +56,7 @@ fun setTabs() {
                 CurrentTab()
             },
             bottomBar = {
-                BottomNavigation(backgroundColor = Color.White) {
+                BottomNavigation(backgroundColor = lightYellow) {
                     TabNavigationItem(HomeTab)
                     TabNavigationItem(FavouriteTab)
                     TabNavigationItem(CartTab)
@@ -71,6 +74,8 @@ private fun RowScope.TabNavigationItem(tab: Tab) {
     BottomNavigationItem(
         selected = tabNavigator.current.key == tab.key,
         onClick = { tabNavigator.current = tab },
+        alwaysShowLabel = true,
+        label = { Text(text=tab.options.title, color=Color.Black)},
         icon = { Icon(painter = tab.options.icon!!, contentDescription = tab.options.title) }
     )
 }
