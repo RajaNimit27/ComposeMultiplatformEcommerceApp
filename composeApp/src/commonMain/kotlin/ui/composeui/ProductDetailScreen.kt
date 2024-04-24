@@ -118,7 +118,7 @@ private fun getProductDetail(mainViewModel: MainViewModel, id: Int?) {
             modifier = Modifier.fillMaxSize()
         ) {
             Column (
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 60.dp)
             ) {
                 product.images?.let { ImageSlider(it) }
                 Spacer(modifier = Modifier.height(16.dp))
