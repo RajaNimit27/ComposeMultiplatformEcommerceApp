@@ -22,7 +22,6 @@ koin="1.1.0"
 mvvmCore = "0.13.1"
 voyagerVersion = "1.0.0"
 pagingCommonVersion = "3.3.0-alpha02-0.4.0"
-sqlVersion="2.0.1"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -43,9 +42,6 @@ voyager-navigator={module="cafe.adriel.voyager:voyager-navigator", version.ref="
 voyager-transition={module="cafe.adriel.voyager:voyager-transitions",version.ref="voyagerVersion"}
 voyager-koin={module="cafe.adriel.voyager:voyager-koin",version.ref="voyagerVersion"}
 voyager-tab-navigator={module="cafe.adriel.voyager:voyager-tab-navigator", version.ref="voyagerVersion"}
-sqllite-Android={module="app.cash.sqldelight:android-driver", version.ref="sqlVersion"}
-sqllite-Native={module="app.cash.sqldelight:native-driver", version.ref="sqlVersion"}
-
 [bundles]
 ktor = ["ktor-client-core", "ktor-client-content-negotiation"]
 
@@ -55,4 +51,3 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-sqlDelight={id="app.cash.sqldelight",version.ref="sqlVersion"}

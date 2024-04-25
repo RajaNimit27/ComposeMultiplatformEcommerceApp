@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinSerialization)
-    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -38,7 +37,6 @@ kotlin {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.android)
-            implementation(libs.sqllite.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -66,15 +64,6 @@ kotlin {
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
-            implementation(libs.sqllite.native)
-        }
-    }
-}
-
-sqldelight {
-    databases {
-        create("AppDatabase") {
-            packageName.set("org.example.project.db")
         }
     }
 }
