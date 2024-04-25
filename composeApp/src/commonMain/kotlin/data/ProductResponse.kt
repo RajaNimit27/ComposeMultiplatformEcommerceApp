@@ -32,4 +32,7 @@ data class Products (
     val rating: Double=0.0,
     @SerialName("images")
     val images: List<String>?=null,
+    val isFavourite:Boolean?=false,
+    var isAddtoCart:Boolean?=false,
+    var quantity:Int?=0,
 )
