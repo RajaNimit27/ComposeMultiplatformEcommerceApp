@@ -1,0 +1,39 @@
+import kotlin.Boolean;
+
+CREATE TABLE ProductTable (
+    id INTEGER,
+    title TEXT,
+    description TEXT,
+    price REAL,
+    discountPercentage REAL,
+    category TEXT,
+    thumbnail TEXT,
+    isAddedToCart INTEGER AS Boolean DEFAULT 0,
+    isFavourite INTEGER AS Boolean DEFAULT 0
+
+);
+
+insertProduct:
+INSERT INTO ProductTable(id, title, description, price, discountPercentage, category, thumbnail, isAddedToCart, isFavourite)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+removeAllProducts:
+DELETE FROM ProductTable;
+
+selectAllProducts:
+SELECT ProductTable.*
+FROM ProductTable;
+
+updateProduct:
+UPDATE ProductTable SET isFavourite = ?;
+
+deleteProduct:
+DELETE FROM ProductTable WHERE id = ?;
+
+selectAllFvouriteProducts:
+SELECT ProductTable.*
+FROM ProductTable WHERE isFavourite = ? ;
+
+selectAllCartProducts:
+SELECT ProductTable.*
+FROM ProductTable WHERE isAddedToCart = ? ;

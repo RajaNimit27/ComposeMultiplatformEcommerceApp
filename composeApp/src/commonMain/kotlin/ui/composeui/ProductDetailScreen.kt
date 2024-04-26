@@ -17,13 +17,16 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.PagerDefaults
-import androidx.compose.foundation.pager.PagerScope
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -34,11 +37,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -50,10 +50,10 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.app.compose_navigation_mvvm_flow.ui.composeui.SimpleAlertDialog
 import com.app.compose_navigation_mvvm_flow.utils.UiState
 import data.Products
-import viewmodel.MainViewModel
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 import themes.lightYellow
+import viewmodel.MainViewModel
 
 
 class ProductDetailScreen(val mainViewModel: MainViewModel, val id: Int?):Screen {
@@ -117,6 +117,7 @@ private fun getProductDetail(mainViewModel: MainViewModel, id: Int?) {
     @Composable
     fun ProductDetail(navigator: Navigator, product: Products) {
         var quantity = remember { mutableStateOf(1) }
+        var isFavourite = remember { mutableStateOf(false) }
         Surface(
             modifier = Modifier.fillMaxSize()
         ) {
@@ -124,6 +125,19 @@ private fun getProductDetail(mainViewModel: MainViewModel, id: Int?) {
                 modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 60.dp)
             ) {
                 product.images?.let { ImageSlider(it) }
+                IconButton(
+                    onClick = {
+                        // Toggle favorite logic here
+                        isFavourite.value= !isFavourite.value
+                    },
+                    modifier = Modifier.align(Alignment.End)
+                ) {
+                    val icon = if (isFavourite.value) Icons.Default.Favorite else Icons.Default.FavoriteBorder
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = "Favorite Button"
+                    )
+                }
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = product.title,
