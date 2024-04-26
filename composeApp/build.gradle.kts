@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -26,7 +27,7 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
-            isStatic = true
+            isStatic = false
         }
     }
     
@@ -37,6 +38,7 @@ kotlin {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.android)
+            implementation(libs.sqldelite.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -55,6 +57,7 @@ kotlin {
             implementation(libs.voyager.transition)
             implementation(libs.voyager.koin)
             implementation(libs.voyager.tab.navigator)
+            implementation(libs.sqldelite.runtime)
 
 
         }
@@ -64,6 +67,15 @@ kotlin {
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sqldelite.native)
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName.set("org.example.project.db")
         }
     }
 }
