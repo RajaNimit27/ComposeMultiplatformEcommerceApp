@@ -49,6 +49,7 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.app.compose_navigation_mvvm_flow.ui.composeui.SimpleAlertDialog
 import com.app.compose_navigation_mvvm_flow.utils.UiState
+import com.example.project.db.DatabaseProvider
 import data.Products
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
@@ -113,11 +114,11 @@ private fun getProductDetail(mainViewModel: MainViewModel, id: Int?) {
     mainViewModel.getProductDetail(id)
 }
 
-
-    @Composable
-    fun ProductDetail(navigator: Navigator, product: Products) {
+@Composable
+fun ProductDetail(navigator: Navigator, product: Products) {
         var quantity = remember { mutableStateOf(1) }
         var isFavourite = remember { mutableStateOf(false) }
+        val dataBase= DatabaseProvider.getDatabase()
         Surface(
             modifier = Modifier.fillMaxSize()
         ) {

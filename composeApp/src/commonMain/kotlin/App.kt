@@ -16,6 +16,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,6 +25,7 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabDisposable
 import cafe.adriel.voyager.navigator.tab.TabNavigator
+import com.example.project.db.Database
 import di.appModule
 import org.koin.compose.KoinApplication
 import themes.lightYellow
@@ -33,7 +35,7 @@ import ui.tabs.HomeTab
 import ui.tabs.ProfileTab
 
 @Composable
-fun App() {
+ fun App() {
     KoinApplication(application = {
         modules(appModule())
     }) {
@@ -45,6 +47,7 @@ fun App() {
                     .windowInsetsPadding(WindowInsets.safeDrawing)
             ) {
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+
                     setTabs()
                 }
             }

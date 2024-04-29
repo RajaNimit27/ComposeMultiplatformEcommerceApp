@@ -28,4 +28,10 @@ class MainViewModel(private val repository: Repository): BaseViewModel() {
     fun getProductDetail(id: Int?) = CoroutineScope(Dispatchers.IO).launch {
         fetchData(_uiStateProductDetail,) { repository.getProductDetail(id) }
     }
+
+    fun addFavouriteProduct(){
+        CoroutineScope(Dispatchers.IO).launch {
+
+        }
+    }
 }

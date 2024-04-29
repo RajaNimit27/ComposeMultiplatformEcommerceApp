@@ -3,7 +3,7 @@ package com.example.project.db
 import data.Products
 import org.example.project.db.AppDatabase
 
-internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
+class Database(databaseDriverFactory: DatabaseDriverFactory) {
 
     private val database = databaseDriverFactory.createDriver()?.let { AppDatabase(it) }
     private val dbQuery = database?.appDatabaseQueries
