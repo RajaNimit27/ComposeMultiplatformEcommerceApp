@@ -14,8 +14,12 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
         }
     }
 
-    internal fun getAllProducts(): List<Products> {
-        return dbQuery?.selectAllProducts(::mapLaunchSelecting)?.executeAsList() ?: emptyList()
+    internal fun getAllFavourites(): List<Products> {
+        return dbQuery?.selectAllFvouriteProducts(true, ::mapLaunchSelecting)?.executeAsList() ?: emptyList()
+    }
+
+    internal fun getAllCartProducts(): List<Products> {
+        return dbQuery?.selectAllCartProducts(true, ::mapLaunchSelecting)?.executeAsList() ?: emptyList()
     }
 
     private fun mapLaunchSelecting(

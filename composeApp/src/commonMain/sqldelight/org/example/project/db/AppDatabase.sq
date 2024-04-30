@@ -1,7 +1,7 @@
 import kotlin.Boolean;
 
 CREATE TABLE ProductTable (
-    id INTEGER,
+    id INTEGER PRIMARY KEY,
     title TEXT,
     description TEXT,
     price REAL,
@@ -14,7 +14,7 @@ CREATE TABLE ProductTable (
 );
 
 insertProduct:
-INSERT INTO ProductTable(id, title, description, price, discountPercentage, category, thumbnail, isAddedToCart, isFavourite)
+INSERT OR REPLACE INTO ProductTable(id, title, description, price, discountPercentage, category, thumbnail, isAddedToCart, isFavourite)
 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 removeAllProducts:

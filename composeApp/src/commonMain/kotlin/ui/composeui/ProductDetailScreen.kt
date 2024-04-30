@@ -54,6 +54,7 @@ import data.Products
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 import themes.lightYellow
+import ui.tabs.CartTab
 import viewmodel.MainViewModel
 
 
@@ -89,7 +90,7 @@ class ProductDetailScreen(val mainViewModel: MainViewModel, val id: Int?):Screen
                         (state.value as UiState.Success<Products>).data?.let {
                           //  RecipeDetailView(recipe = it)
                             titleValue.value = it.title
-                            ProductDetail(navigator,it)
+                            ProductDetail(mainViewModel,navigator,it)
                         }
                     }
 
@@ -109,16 +110,17 @@ class ProductDetailScreen(val mainViewModel: MainViewModel, val id: Int?):Screen
 
 }
 
+
 private fun getProductDetail(mainViewModel: MainViewModel, id: Int?) {
     // Call the function to fetch recipes
     mainViewModel.getProductDetail(id)
 }
 
 @Composable
-fun ProductDetail(navigator: Navigator, product: Products) {
+fun ProductDetail(mainViewModel: MainViewModel,navigator: Navigator, product: Products) {
         var quantity = remember { mutableStateOf(1) }
         var isFavourite = remember { mutableStateOf(false) }
-        val dataBase= DatabaseProvider.getDatabase()
+
         Surface(
             modifier = Modifier.fillMaxSize()
         ) {
@@ -130,6 +132,7 @@ fun ProductDetail(navigator: Navigator, product: Products) {
                     onClick = {
                         // Toggle favorite logic here
                         isFavourite.value= !isFavourite.value
+                        mainViewModel.addFavouriteProduct(product,isFavourite.value)
                     },
                     modifier = Modifier.align(Alignment.End)
                 ) {
@@ -213,20 +216,12 @@ fun ProductDetail(navigator: Navigator, product: Products) {
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
                             // Add to cart logic here
+                            mainViewModel.addtoCartProduct(product)
                         },
                     ) {
                         Text("Add to Cart",fontWeight = FontWeight.Bold , color = Color.Black)
                     }
                     Spacer(modifier = Modifier.width(20.dp))
-                    Button(
-                        modifier = Modifier.fillMaxWidth(),
-                        onClick = {
-                            // Buy now logic here
-                        },
-                        colors = ButtonDefaults.buttonColors(containerColor = lightYellow, contentColor = lightYellow),
-                    ) {
-                        Text("Buy Now",fontWeight = FontWeight.Bold,color = Color.Black)
-                    }
 
             }
         }
