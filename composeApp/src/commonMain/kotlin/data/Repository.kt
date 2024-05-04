@@ -42,6 +42,12 @@ class Repository(private val remoteDataSource: RemoteDataSource) {
         }
     }
 
+    fun removeCartProduct(products: Products){
+        CoroutineScope(Dispatchers.IO).launch {
+            dataBase.removeProduct(products)
+        }
+    }
+
     suspend fun getFavouriteProducts(): List<Products> {
         return withContext(Dispatchers.IO) {
             val cachedProductsDeferred = async { dataBase.getAllFavourites() }

@@ -49,6 +49,10 @@ class MainViewModel(private val repository: Repository): BaseViewModel() {
         repository.addtoCartProduct(products)
     }
 
+    fun removeProduct(products: Products){
+        repository.removeCartProduct(products)
+    }
+
     fun getFavouriteProducts() {
        CoroutineScope(Dispatchers.IO).launch {
              _favouriteProducts.value = repository.getFavouriteProducts()
