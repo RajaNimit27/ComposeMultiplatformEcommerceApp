@@ -1,6 +1,7 @@
 package ui.composeui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -70,7 +71,9 @@ object FavouriteProductList:Screen {
                 }
                 LazyColumn {
                     items(favouriteProducts.value.size) {
-                        ProductItem(favouriteProducts.value[it])
+                        ProductItemVertical(favouriteProducts.value[it]) {
+                            navigator.push(ProductDetailScreen(mainViewModel,it.id))
+                        }
                     }
                 }
             }
@@ -80,11 +83,11 @@ object FavouriteProductList:Screen {
 }
 
 @Composable
-fun ProductItem(product: Products) {
+fun ProductItemVertical(product: Products,onProductClick: (Products) -> Unit) {
     Card(
         modifier = Modifier.padding(8.dp)
             .fillMaxWidth()
-            .wrapContentHeight(),
+            .wrapContentHeight().clickable { onProductClick(product)},
         shape = MaterialTheme.shapes.medium,
         elevation =  CardDefaults.cardElevation(
             defaultElevation = 5.dp)) {

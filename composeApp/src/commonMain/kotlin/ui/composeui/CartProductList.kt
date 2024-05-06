@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import data.Products
 import org.koin.compose.getKoin
 import themes.lightYellow
 import viewmodel.MainViewModel
@@ -63,7 +64,9 @@ object CartProductList:Screen {
                     LazyColumn {
                         items(cartProducts.value.size) {
                            // totalCost.value += cartProducts.value[it].price
-                            ProductItem(cartProducts.value[it])
+                            ProductItemVertical(cartProducts.value[it]){
+                                navigator.push(ProductDetailScreen(mainViewModel,it.id))
+                            }
                         }
                     }
                     Row (
