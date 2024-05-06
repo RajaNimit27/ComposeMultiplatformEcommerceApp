@@ -1,7 +1,7 @@
 package data
 
 import com.app.compose_navigation_mvvm_flow.utils.UiState
-import com.example.project.db.DatabaseProvider
+import com.example.project.db.DataBaseProviderObject
 import data.remote.RemoteDataSource
 import data.remote.toResultFlow
 import kotlinx.coroutines.CoroutineScope
@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 class Repository(private val remoteDataSource: RemoteDataSource) {
 
-    val dataBase= DatabaseProvider.getDatabase()
+    val dataBase= DataBaseProviderObject.getDatabase()
 
     suspend fun getProducts(): Flow<UiState<ProductResponse?>> {
         return toResultFlow {

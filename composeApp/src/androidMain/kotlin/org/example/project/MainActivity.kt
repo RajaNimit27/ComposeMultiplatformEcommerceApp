@@ -12,7 +12,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.project.db.Database
 import com.example.project.db.DatabaseDriverFactory
-import com.example.project.db.DatabaseProvider
+import com.example.project.db.DataBaseProviderObject
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
             )
         )
         setContent {
-            DatabaseProvider.setDriveFactory(DatabaseDriverFactory(LocalContext.current))
+            DataBaseProviderObject.setDriveFactory(DatabaseDriverFactory(LocalContext.current))
             App()
         }
     }

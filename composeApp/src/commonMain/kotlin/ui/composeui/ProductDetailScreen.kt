@@ -49,7 +49,7 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.app.compose_navigation_mvvm_flow.ui.composeui.SimpleAlertDialog
 import com.app.compose_navigation_mvvm_flow.utils.UiState
-import com.example.project.db.DatabaseProvider
+import com.example.project.db.DataBaseProviderObject
 import data.Products
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource

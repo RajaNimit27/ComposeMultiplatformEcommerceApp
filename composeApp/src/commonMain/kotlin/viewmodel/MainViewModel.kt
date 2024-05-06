@@ -5,7 +5,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import data.Repository
 import com.app.compose_navigation_mvvm_flow.utils.UiState
-import com.example.project.db.DatabaseProvider
 import data.ProductResponse
 import data.Products
 import kotlinx.coroutines.CoroutineScope
