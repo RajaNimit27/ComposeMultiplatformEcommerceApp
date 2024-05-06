@@ -70,9 +70,7 @@ object FavouriteProductList:Screen {
                 }
                 LazyColumn {
                     items(favouriteProducts.value.size) {
-                        ProductItem(favouriteProducts.value[it]) {
-
-                        }
+                        ProductItem(favouriteProducts.value[it])
                     }
                 }
             }
@@ -82,7 +80,7 @@ object FavouriteProductList:Screen {
 }
 
 @Composable
-fun ProductItem(product: Products, onDeleteClick: () -> Unit) {
+fun ProductItem(product: Products) {
     Card(
         modifier = Modifier.padding(8.dp)
             .fillMaxWidth()
@@ -99,7 +97,7 @@ fun ProductItem(product: Products, onDeleteClick: () -> Unit) {
                 )
                 Column (
                     verticalArrangement = Arrangement.Center,
-                    modifier = Modifier.padding(10.dp).weight(1f)
+                    modifier = Modifier.padding(10.dp)
                 ) {
                     Text(
                         text = product.title,
@@ -121,13 +119,6 @@ fun ProductItem(product: Products, onDeleteClick: () -> Unit) {
                         fontSize = 15.sp,
                         maxLines = 1,
                         fontWeight = FontWeight.Medium
-                    )
-                }
-                IconButton(onClick = onDeleteClick) {
-                    Icon(
-                        imageVector = Icons.Filled.Delete,
-                        contentDescription = "Delete",
-                        tint = Color.Black
                     )
                 }
             }

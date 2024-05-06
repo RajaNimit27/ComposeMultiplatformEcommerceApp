@@ -37,7 +37,6 @@ object CartProductList:Screen {
         val mainViewModel:MainViewModel = getKoin().get()
         val cartProducts = remember(mainViewModel) { mainViewModel.cartProducts }
         val totalCost= remember { mutableStateOf(0.0) }
-        var refreshData = remember { mutableStateOf(true) }
 
         Scaffold(
 
@@ -55,9 +54,8 @@ object CartProductList:Screen {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 //add your code
-                LaunchedEffect(key1 = refreshData) {
+                LaunchedEffect(key1 = Unit) {
                     mainViewModel.getCartProducts()
-                    refreshData.value= false
 
 
                 }
@@ -65,10 +63,7 @@ object CartProductList:Screen {
                     LazyColumn {
                         items(cartProducts.value.size) {
                            // totalCost.value += cartProducts.value[it].price
-                            ProductItem(cartProducts.value[it]){
-                                mainViewModel.removeProduct(cartProducts.value[it])
-                                refreshData.value = true
-                            }
+                            ProductItem(cartProducts.value[it])
                         }
                     }
                     Row (

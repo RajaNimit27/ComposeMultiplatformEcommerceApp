@@ -18,7 +18,6 @@ import com.app.compose_navigation_mvvm_flow.utils.UiState
 import data.ProductResponse
 import viewmodel.MainViewModel
 import org.koin.compose.getKoin
-import ui.paging.ProductCard
 
 object HomeScreen: Screen {
 

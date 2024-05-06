@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import ui.composeui.HomeScreen
+import ui.composeui.ProfileScreen
 
 object ProfileTab : Tab {
     override val options: TabOptions
@@ -21,6 +22,6 @@ object ProfileTab : Tab {
 
     @Composable
     override fun Content() {
-        TabContent(HomeScreen)
+        TabContent(ProfileScreen)
     }
 }

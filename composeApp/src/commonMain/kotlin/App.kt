@@ -64,7 +64,7 @@ fun setTabs() {
         tabDisposable = {
             TabDisposable(
                 navigator = it,
-                tabs = listOf(HomeTab, FavouriteTab, CartTab, ProfileTab)
+                tabs = listOf(HomeTab, FavouriteTab, CartTab)
             )
         }
     ) { tabNavigator ->
@@ -77,7 +77,7 @@ fun setTabs() {
                     TabNavigationItem(HomeTab)
                     TabNavigationItem(FavouriteTab)
                     TabNavigationItem(CartTab)
-                    TabNavigationItem(ProfileTab)
+                  //  TabNavigationItem(ProfileTab)
                 }
             }
         )
